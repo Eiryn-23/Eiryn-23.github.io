@@ -16,7 +16,6 @@
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-weight:300; overflow-x:hidden; }
-
     #petals { position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
     .petal { position:absolute; opacity:0; animation:fall linear infinite; }
     @keyframes fall { 0%{transform:translateY(-60px) rotate(0deg);opacity:0} 6%{opacity:0.65} 90%{opacity:0.45} 100%{transform:translateY(105vh) rotate(400deg);opacity:0} }
@@ -44,19 +43,15 @@
     .tab-panel { display:none; }
     .tab-panel.active { display:block; }
 
-    /* BOOKS GRID */
     .books-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:1.5rem; }
-    .book-card { background:#fff; border:1px solid var(--border); border-radius:16px; overflow:hidden; box-shadow:var(--shadow); transition:all 0.35s ease; position:relative; }
+    .book-card { background:#fff; border:1px solid var(--border); border-radius:16px; overflow:hidden; box-shadow:var(--shadow); transition:all 0.35s ease; }
     .book-card:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(212,96,122,0.14); border-color:var(--border2); }
     .book-cover { width:100%; aspect-ratio:2/3; background:linear-gradient(160deg,#fce8ed,#f7dde5); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
     .book-cover img { width:100%; height:100%; object-fit:cover; }
     .book-cover-placeholder { font-size:3rem; }
     .book-badge { position:absolute; top:0.7rem; left:0.7rem; font-size:0.58rem; letter-spacing:0.1em; text-transform:uppercase; color:#fff; padding:0.2rem 0.6rem; border-radius:100px; }
-    .badge-lu { background:var(--sakura); }
-    .badge-encours { background:var(--petal3); }
-    .badge-pal { background:var(--petal2); }
-    .badge-wishlist { background:#c4a8d4; }
-    .badge-coeur { background:#e8849e; }
+    .badge-lu{background:var(--sakura)} .badge-encours{background:var(--petal3)} .badge-pal{background:var(--petal2);color:var(--text)} .badge-wishlist{background:#c4a8d4} .badge-coeur{background:#e8849e}
+    .format-badge { position:absolute; bottom:0.5rem; right:0.5rem; font-size:0.55rem; background:rgba(255,255,255,0.92); color:var(--muted); padding:0.15rem 0.45rem; border-radius:100px; }
     .book-info { padding:1rem; }
     .book-title { font-family:'Cormorant Garamond',serif; font-size:1rem; font-weight:400; color:var(--text); line-height:1.3; margin-bottom:0.2rem; }
     .book-author { font-size:0.73rem; color:var(--muted); margin-bottom:0.6rem; }
@@ -65,26 +60,17 @@
     .book-stars { color:var(--sakura); font-size:0.82rem; margin-bottom:0.4rem; }
     .book-avis { font-size:0.73rem; color:var(--muted); line-height:1.5; font-style:italic; margin-bottom:0.4rem; }
     .book-date { font-size:0.65rem; color:var(--petal3); }
-    .book-delete { position:absolute; top:0.5rem; right:0.5rem; background:rgba(255,255,255,0.9); border:none; border-radius:50%; width:24px; height:24px; font-size:0.7rem; cursor:pointer; display:none; align-items:center; justify-content:center; color:var(--sakura); }
-    .book-card:hover .book-delete { display:flex; }
+    .progress-mini-outer { background:var(--blush); border-radius:100px; height:5px; margin:0.4rem 0 0.2rem; overflow:hidden; }
+    .progress-mini-fill { height:100%; background:linear-gradient(90deg,var(--petal2),var(--sakura)); border-radius:100px; }
 
-    /* EN COURS */
-    .encours-card { background:#fff; border:1px solid var(--border2); border-radius:20px; padding:2rem; display:grid; grid-template-columns:130px 1fr; gap:2rem; box-shadow:var(--shadow); margin-bottom:1.5rem; align-items:start; position:relative; }
-    .encours-cover { aspect-ratio:2/3; border-radius:12px; background:linear-gradient(160deg,#fce8ed,#f7dde5); display:flex; align-items:center; justify-content:center; overflow:hidden; font-size:3rem; }
-    .encours-cover img { width:100%; height:100%; object-fit:cover; border-radius:12px; }
-    .encours-label { font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--petal3); margin-bottom:0.5rem; }
-    .encours-title { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:300; color:var(--text); margin-bottom:0.3rem; line-height:1.2; }
-    .encours-author { font-size:0.82rem; color:var(--muted); margin-bottom:1rem; }
-    .progress-bar-outer { background:var(--blush); border-radius:100px; height:8px; overflow:hidden; margin:0.4rem 0 0.3rem; }
-    .progress-bar-fill { height:100%; background:linear-gradient(90deg,var(--petal2),var(--sakura)); border-radius:100px; }
-
-    /* CHALLENGE */
     .challenge-box { background:#fff; border:1px solid var(--border); border-radius:20px; padding:2.5rem; margin-bottom:2rem; box-shadow:var(--shadow); }
     .challenge-box h2 { font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:300; color:var(--text); margin-bottom:0.4rem; }
     .challenge-box p { font-size:0.85rem; color:var(--muted); margin-bottom:1.5rem; }
     .challenge-total { display:flex; align-items:baseline; gap:0.5rem; margin-bottom:1rem; }
     .challenge-count { font-family:'Cormorant Garamond',serif; font-size:3.5rem; font-weight:300; color:var(--sakura); line-height:1; }
     .challenge-goal { font-size:0.85rem; color:var(--muted); }
+    .progress-bar-outer { background:var(--blush); border-radius:100px; height:10px; overflow:hidden; }
+    .progress-bar-fill { height:100%; background:linear-gradient(90deg,var(--petal2),var(--sakura)); border-radius:100px; transition:width 0.8s; }
     .progress-label { font-size:0.75rem; color:var(--muted); text-align:right; margin-top:0.3rem; }
     .months-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:0.8rem; margin-top:1.5rem; }
     .month-card { background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:0.9rem; text-align:center; }
@@ -92,46 +78,11 @@
     .month-count { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:300; color:var(--text); }
     .month-sub { font-size:0.7rem; color:var(--muted); }
     .month-bar { height:4px; background:var(--blush); border-radius:100px; margin-top:0.5rem; overflow:hidden; }
-    .month-bar-fill { height:100%; background:linear-gradient(90deg,var(--petal2),var(--sakura)); border-radius:100px; transition:width 0.5s; }
+    .month-bar-fill { height:100%; background:linear-gradient(90deg,var(--petal2),var(--sakura)); border-radius:100px; }
 
-    /* EMPTY */
-    .empty-state { text-align:center; padding:4rem 2rem; color:var(--muted); }
+    .empty-state { text-align:center; padding:4rem 2rem; color:var(--muted); grid-column:1/-1; }
     .empty-state-icon { font-size:3rem; margin-bottom:1rem; }
     .empty-state p { font-size:0.88rem; line-height:1.7; }
-
-    /* FAB BUTTON */
-    .fab { position:fixed; bottom:2.5rem; right:2.5rem; z-index:200; width:56px; height:56px; border-radius:50%; background:var(--sakura); border:none; color:#fff; font-size:1.5rem; cursor:pointer; box-shadow:0 4px 20px rgba(212,96,122,0.35); transition:all 0.3s; display:flex; align-items:center; justify-content:center; }
-    .fab:hover { background:var(--sakura2); transform:scale(1.08); }
-
-    /* MODAL */
-    .modal-overlay { position:fixed; inset:0; background:rgba(61,43,48,0.4); z-index:300; display:none; align-items:center; justify-content:center; padding:1rem; backdrop-filter:blur(4px); }
-    .modal-overlay.open { display:flex; }
-    .modal { background:#fff; border-radius:24px; padding:2.5rem; width:100%; max-width:540px; max-height:90vh; overflow-y:auto; box-shadow:0 20px 60px rgba(212,96,122,0.2); }
-    .modal h2 { font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:300; color:var(--text); margin-bottom:0.3rem; }
-    .modal-sub { font-size:0.82rem; color:var(--muted); margin-bottom:2rem; }
-    .form-group { margin-bottom:1.2rem; }
-    .form-group label { display:block; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--sakura); margin-bottom:0.4rem; }
-    .form-group input, .form-group select, .form-group textarea {
-      width:100%; background:var(--bg); border:1px solid var(--border2); border-radius:10px;
-      padding:0.75rem 1rem; font-family:'DM Sans',sans-serif; font-size:0.85rem; color:var(--text); outline:none;
-      transition:border-color 0.3s;
-    }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--sakura); }
-    .form-group textarea { resize:vertical; min-height:80px; }
-    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-    .star-select { display:flex; gap:0.5rem; }
-    .star-select button { background:none; border:none; font-size:1.4rem; cursor:pointer; opacity:0.3; transition:opacity 0.2s; }
-    .star-select button.on { opacity:1; }
-    .modal-actions { display:flex; gap:1rem; margin-top:2rem; }
-    .btn-primary { flex:1; background:var(--sakura); border:none; color:#fff; padding:0.9rem; border-radius:100px; font-family:'DM Sans',sans-serif; font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; transition:background 0.3s; }
-    .btn-primary:hover { background:var(--sakura2); }
-    .btn-secondary { background:none; border:1px solid var(--border2); color:var(--muted); padding:0.9rem 1.5rem; border-radius:100px; font-family:'DM Sans',sans-serif; font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; transition:all 0.3s; }
-    .btn-secondary:hover { border-color:var(--sakura); color:var(--sakura); }
-
-    .section-header { display:flex; align-items:baseline; gap:1.5rem; margin-bottom:2rem; }
-    .section-label { font-size:0.65rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--petal2); }
-    .section-title { font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:var(--text); }
-    .section-line { flex:1; height:1px; background:var(--border); }
 
     footer { position:relative; z-index:1; border-top:1px solid var(--border); padding:2.2rem 4rem; display:flex; align-items:center; justify-content:space-between; background:#fff9f7; }
     .footer-name { font-family:'Cormorant Garamond',serif; font-size:1rem; color:var(--sakura); }
@@ -140,23 +91,16 @@
     .footer-links a:hover { color:var(--sakura); }
     .footer-copy { font-size:0.7rem; color:var(--muted); }
 
-    @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
-
     @media(max-width:768px){
-      nav{padding:1.2rem 1.5rem}
-      .nav-links{gap:1rem; font-size:0.7rem}
+      nav{padding:1.2rem 1.5rem} .nav-links{gap:1rem}
       .months-grid{grid-template-columns:repeat(3,1fr)}
-      .encours-card{grid-template-columns:1fr}
       .books-grid{grid-template-columns:repeat(2,1fr)}
-      .form-row{grid-template-columns:1fr}
       footer{flex-direction:column;gap:1rem;text-align:center;padding:1.8rem 1.5rem}
     }
   </style>
 </head>
 <body>
-
 <div id="petals"></div>
-
 <nav>
   <a href="index.html" class="nav-logo">Pensine Moderne</a>
   <ul class="nav-links">
@@ -198,105 +142,9 @@
         <span class="challenge-count" id="ch-count">0</span>
         <span class="challenge-goal">/ 60 livres</span>
       </div>
-      <div class="progress-bar-outer">
-        <div class="progress-bar-fill" id="ch-bar" style="width:0%"></div>
-      </div>
+      <div class="progress-bar-outer"><div class="progress-bar-fill" id="ch-bar" style="width:0%"></div></div>
       <p class="progress-label" id="ch-pct">0% de l'objectif annuel</p>
       <div class="months-grid" id="months-grid"></div>
-    </div>
-  </div>
-</div>
-
-<!-- FAB -->
-<button class="fab" onclick="openModal()" title="Ajouter un livre">+</button>
-
-<!-- MODAL -->
-<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
-  <div class="modal">
-    <h2>Ajouter un livre 🌸</h2>
-    <p class="modal-sub">Remplis les infos et ton livre apparaîtra dans la bonne section !</p>
-
-    <div class="form-row">
-      <div class="form-group">
-        <label>Titre *</label>
-        <input type="text" id="f-titre" placeholder="Titre du livre" />
-      </div>
-      <div class="form-group">
-        <label>Auteur·e *</label>
-        <input type="text" id="f-auteur" placeholder="Nom de l'auteur·e" />
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group">
-        <label>Genre</label>
-        <input type="text" id="f-genre" placeholder="ex: Fantasy" />
-      </div>
-      <div class="form-group">
-        <label>Sous-genre</label>
-        <input type="text" id="f-sgenre" placeholder="ex: Dark fantasy" />
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label>Section *</label>
-      <select id="f-section" onchange="toggleFields()">
-        <option value="encours">📖 En cours</option>
-        <option value="lu">✅ Lu</option>
-        <option value="pal">🗂️ PAL</option>
-        <option value="wishlist">💫 Wishlist</option>
-        <option value="coeur">🩷 Coup de cœur</option>
-      </select>
-    </div>
-
-    <div id="fields-encours">
-      <div class="form-group">
-        <label>Progression (%)</label>
-        <input type="number" id="f-prog" min="0" max="100" placeholder="ex: 45" />
-      </div>
-    </div>
-
-    <div id="fields-lu" style="display:none">
-      <div class="form-group">
-        <label>Note</label>
-        <div class="star-select" id="star-select">
-          <button type="button" onclick="setNote(1)">★</button>
-          <button type="button" onclick="setNote(2)">★</button>
-          <button type="button" onclick="setNote(3)">★</button>
-          <button type="button" onclick="setNote(4)">★</button>
-          <button type="button" onclick="setNote(5)">★</button>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Mon avis</label>
-        <textarea id="f-avis" placeholder="Quelques mots sur ce livre..."></textarea>
-      </div>
-      <div class="form-group">
-        <label>Mois de lecture</label>
-        <input type="month" id="f-date" />
-      </div>
-    </div>
-
-    <div id="fields-coeur" style="display:none">
-      <div class="form-group">
-        <label>Note</label>
-        <div class="star-select" id="star-select-coeur">
-          <button type="button" onclick="setNote(1)">★</button>
-          <button type="button" onclick="setNote(2)">★</button>
-          <button type="button" onclick="setNote(3)">★</button>
-          <button type="button" onclick="setNote(4)">★</button>
-          <button type="button" onclick="setNote(5)">★</button>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Pourquoi ce coup de cœur ?</label>
-        <textarea id="f-avis-coeur" placeholder="Ce livre m'a marquée parce que..."></textarea>
-      </div>
-    </div>
-
-    <div class="modal-actions">
-      <button class="btn-secondary" onclick="closeModal()">Annuler</button>
-      <button class="btn-primary" onclick="addBook()">Ajouter 🌸</button>
     </div>
   </div>
 </div>
@@ -312,198 +160,28 @@
 </footer>
 
 <script>
-// Pétales
-const pc = document.getElementById('petals');
-const cols = ['#f7c5d0','#f2a8bc','#fce8ed','#e8849e','#fdf0f3'];
-for(let i=0;i<20;i++){
-  const d=document.createElement('div'); d.className='petal';
-  const sz=10+Math.random()*16, col=cols[Math.floor(Math.random()*cols.length)];
-  d.innerHTML=`<svg width="${sz}" height="${sz}" viewBox="0 0 40 40"><path d="M20 2 C26 8,36 10,34 20 C32 30,22 36,20 38 C18 36,8 30,6 20 C4 10,14 8,20 2Z" fill="${col}" opacity="0.75"/></svg>`;
-  d.style.left=(Math.random()*102)+'vw';
-  d.style.animation=`fall ${9+Math.random()*10}s linear ${Math.random()*16}s infinite`;
-  pc.appendChild(d);
-}
+const pc=document.getElementById('petals');
+const cols=['#f7c5d0','#f2a8bc','#fce8ed','#e8849e','#fdf0f3'];
+for(let i=0;i<20;i++){const d=document.createElement('div');d.className='petal';const sz=10+Math.random()*16,col=cols[Math.floor(Math.random()*cols.length)];d.innerHTML=`<svg width="${sz}" height="${sz}" viewBox="0 0 40 40"><path d="M20 2 C26 8,36 10,34 20 C32 30,22 36,20 38 C18 36,8 30,6 20 C4 10,14 8,20 2Z" fill="${col}" opacity="0.75"/></svg>`;d.style.left=(Math.random()*102)+'vw';d.style.animation=`fall ${9+Math.random()*10}s linear ${Math.random()*16}s infinite`;pc.appendChild(d);}
 
-// Data
-let books = JSON.parse(localStorage.getItem('pm-books') || '[]');
-let currentNote = 0;
+let books=JSON.parse(localStorage.getItem('pm-books')||'[]');
+function stars(n){return n?'★'.repeat(n)+'☆'.repeat(5-n):'';}
+function formatDate(d){if(!d)return'';const[y,m]=d.split('-');const months=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];return months[parseInt(m)-1]+' '+y;}
+function showTab(name,btn){document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+name).classList.add('active');btn.classList.add('active');if(name==='challenge')renderChallenge();}
+const icons={lu:'📚',encours:'📖',pal:'🗂️',wishlist:'💫',coeur:'🩷'};
+const badgeLabels={lu:'Lu',encours:'En cours',pal:'PAL',wishlist:'Wishlist',coeur:'Coup de cœur'};
+const emptyMsgs={encours:'Aucune lecture en cours.',lu:'Aucun livre lu pour le moment.',pal:'La pile à lire est vide.',wishlist:'La wishlist est vide.',coeur:'Les coups de cœur arrivent bientôt...'};
 
-function save() { localStorage.setItem('pm-books', JSON.stringify(books)); }
+function renderCard(b){
+  const coverHtml=b.cover?`<img src="${b.cover}" alt="${b.titre}" onerror="this.parentElement.innerHTML='<span class=book-cover-placeholder>${icons[b.section]||'📚'}</span>'">`:`<span class="book-cover-placeholder">${icons[b.section]||'📚'}</span>`;
+  return`<div class="book-card"><div class="book-cover">${coverHtml}<span class="book-badge badge-${b.section}">${badgeLabels[b.section]}</span>${b.format?`<span class="format-badge">${b.format}</span>`:''}</div><div class="book-info"><p class="book-title">${b.titre}</p>${b.auteur?`<p class="book-author">${b.auteur}</p>`:''}<div class="book-genres">${b.genre?`<span class="book-genre">${b.genre}</span>`:''}${b.sgenre?`<span class="book-genre">${b.sgenre}</span>`:''}</div>${b.note?`<p class="book-stars">${stars(b.note)}</p>`:''}${b.avis?`<p class="book-avis">${b.avis}</p>`:''}${b.date?`<p class="book-date">${formatDate(b.date)}</p>`:''}${b.section==='encours'&&b.prog?`<div class="progress-mini-outer"><div class="progress-mini-fill" style="width:${b.prog}%"></div></div><p style="font-size:0.68rem;color:var(--sakura)">${b.prog}%</p>`:''}</div></div>`;
+}
+function emptyState(msg){return`<div class="empty-state"><div class="empty-state-icon">🌸</div><p>${msg}</p></div>`;}
+function renderAll(){['encours','lu','pal','wishlist','coeur'].forEach(s=>{const f=books.filter(b=>b.section===s);document.getElementById('grid-'+s).innerHTML=f.length?f.map(renderCard).join(''):emptyState(emptyMsgs[s]);});renderChallenge();}
+function renderChallenge(){const lus=books.filter(b=>b.section==='lu'||b.section==='coeur');const total=lus.length;const pct=Math.min(Math.round(total/60*100),100);document.getElementById('ch-count').textContent=total;document.getElementById('ch-bar').style.width=pct+'%';document.getElementById('ch-pct').textContent=pct+"% de l'objectif annuel";const monthNames=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];const counts=Array(12).fill(0);lus.forEach(b=>{if(b.date){const m=parseInt(b.date.split('-')[1])-1;if(m>=0&&m<12)counts[m]++;}});document.getElementById('months-grid').innerHTML=monthNames.map((name,i)=>`<div class="month-card"><p class="month-name">${name}</p><p class="month-count">${counts[i]}<span class="month-sub">/5</span></p><div class="month-bar"><div class="month-bar-fill" style="width:${Math.min(counts[i]/5*100,100)}%"></div></div></div>`).join('');}
 
-// Tabs
-function showTab(name, btn) {
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+name).classList.add('active');
-  btn.classList.add('active');
-  if(name==='challenge') renderChallenge();
-}
-
-// Stars
-function setNote(n) {
-  currentNote = n;
-  const activeSection = document.getElementById('f-section').value;
-  const containerId = (activeSection === 'coeur') ? 'star-select-coeur' : 'star-select';
-  document.querySelectorAll('#'+containerId+' button').forEach((b,i)=>{
-    b.classList.toggle('on', i<n);
-  });
-}
-
-// Toggle fields
-function toggleFields() {
-  const v = document.getElementById('f-section').value;
-  document.getElementById('fields-encours').style.display = v==='encours' ? 'block' : 'none';
-  document.getElementById('fields-lu').style.display = v==='lu' ? 'block' : 'none';
-  document.getElementById('fields-coeur').style.display = v==='coeur' ? 'block' : 'none';
-  currentNote = 0;
-  document.querySelectorAll('.star-select button').forEach(b=>b.classList.remove('on'));
-}
-
-// Modal
-function openModal() {
-  document.getElementById('modal-overlay').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeModal() {
-  document.getElementById('modal-overlay').classList.remove('open');
-  document.body.style.overflow='';
-  resetForm();
-}
-function closeModalOutside(e) {
-  if(e.target.id==='modal-overlay') closeModal();
-}
-function resetForm() {
-  ['f-titre','f-auteur','f-genre','f-sgenre','f-prog','f-avis','f-avis-coeur','f-date'].forEach(id=>{
-    const el=document.getElementById(id); if(el) el.value='';
-  });
-  document.getElementById('f-section').value='encours';
-  toggleFields(); currentNote=0;
-  document.querySelectorAll('.star-select button').forEach(b=>b.classList.remove('on'));
-}
-
-// Add book
-function addBook() {
-  const titre = document.getElementById('f-titre').value.trim();
-  const auteur = document.getElementById('f-auteur').value.trim();
-  if(!titre || !auteur) { alert('Le titre et l\'auteur·e sont obligatoires 🌸'); return; }
-  const section = document.getElementById('f-section').value;
-  const book = {
-    id: Date.now(),
-    titre, auteur,
-    genre: document.getElementById('f-genre').value.trim(),
-    sgenre: document.getElementById('f-sgenre').value.trim(),
-    section,
-    note: currentNote,
-    avis: section==='coeur' ? document.getElementById('f-avis-coeur').value.trim() : document.getElementById('f-avis').value.trim(),
-    date: document.getElementById('f-date').value,
-    prog: document.getElementById('f-prog').value || 0
-  };
-  books.push(book);
-  save();
-  renderAll();
-  closeModal();
-}
-
-// Delete
-function deleteBook(id) {
-  if(!confirm('Supprimer ce livre ? 🌸')) return;
-  books = books.filter(b=>b.id!==id);
-  save(); renderAll();
-}
-
-// Render stars
-function stars(n) {
-  return '★'.repeat(n) + '☆'.repeat(5-n);
-}
-
-// Format date
-function formatDate(d) {
-  if(!d) return '';
-  const [y,m] = d.split('-');
-  const months = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
-  return months[parseInt(m)-1] + ' ' + y;
-}
-
-// Render book card
-function renderCard(b) {
-  const badgeLabels = {lu:'Lu',encours:'En cours',pal:'PAL',wishlist:'Wishlist',coeur:'Coup de cœur'};
-  const icons = {lu:'📚',encours:'📖',pal:'🗂️',wishlist:'💫',coeur:'🩷'};
-  return `<div class="book-card">
-    <div class="book-cover">
-      <span class="book-cover-placeholder">${icons[b.section]||'📚'}</span>
-      <span class="book-badge badge-${b.section}">${badgeLabels[b.section]}</span>
-    </div>
-    <div class="book-info">
-      <p class="book-title">${b.titre}</p>
-      <p class="book-author">${b.auteur}</p>
-      <div class="book-genres">
-        ${b.genre ? `<span class="book-genre">${b.genre}</span>` : ''}
-        ${b.sgenre ? `<span class="book-genre">${b.sgenre}</span>` : ''}
-      </div>
-      ${b.note ? `<p class="book-stars">${stars(b.note)}</p>` : ''}
-      ${b.avis ? `<p class="book-avis">${b.avis}</p>` : ''}
-      ${b.date ? `<p class="book-date">${formatDate(b.date)}</p>` : ''}
-      ${b.section==='encours' && b.prog ? `
-        <p style="font-size:0.72rem;color:var(--muted);margin-top:0.5rem;">Progression</p>
-        <div class="progress-bar-outer" style="margin:0.3rem 0"><div class="progress-bar-fill" style="width:${b.prog}%"></div></div>
-        <p style="font-size:0.7rem;color:var(--sakura)">${b.prog}%</p>` : ''}
-    </div>
-    <button class="book-delete" onclick="deleteBook(${b.id})">✕</button>
-  </div>`;
-}
-
-// Empty state
-function emptyState(msg) {
-  return `<div class="empty-state" style="grid-column:1/-1">
-    <div class="empty-state-icon">🌸</div>
-    <p>${msg}<br/>Clique sur <strong>+</strong> pour ajouter ton premier livre !</p>
-  </div>`;
-}
-
-// Render all
-function renderAll() {
-  const sections = ['encours','lu','pal','wishlist','coeur'];
-  const msgs = {
-    encours:'Aucune lecture en cours pour le moment.',
-    lu:'Aucun livre lu pour le moment.',
-    pal:'Ta pile à lire est vide pour le moment.',
-    wishlist:'Ta wishlist est vide pour le moment.',
-    coeur:'Tes coups de cœur arrivent bientôt...'
-  };
-  sections.forEach(s=>{
-    const filtered = books.filter(b=>b.section===s);
-    const grid = document.getElementById('grid-'+s);
-    grid.innerHTML = filtered.length ? filtered.map(renderCard).join('') : emptyState(msgs[s]);
-  });
-  renderChallenge();
-}
-
-// Challenge
-function renderChallenge() {
-  const lus = books.filter(b=>b.section==='lu'||b.section==='coeur');
-  const total = lus.length;
-  const pct = Math.min(Math.round(total/60*100),100);
-  document.getElementById('ch-count').textContent = total;
-  document.getElementById('ch-bar').style.width = pct+'%';
-  document.getElementById('ch-pct').textContent = pct+'% de l\'objectif annuel';
-
-  const monthNames = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
-  const counts = Array(12).fill(0);
-  lus.forEach(b=>{
-    if(b.date) {
-      const m = parseInt(b.date.split('-')[1])-1;
-      if(m>=0&&m<12) counts[m]++;
-    }
-  });
-  const grid = document.getElementById('months-grid');
-  grid.innerHTML = monthNames.map((name,i)=>`
-    <div class="month-card">
-      <p class="month-name">${name}</p>
-      <p class="month-count">${counts[i]}<span class="month-sub">/5</span></p>
-      <div class="month-bar"><div class="month-bar-fill" style="width:${Math.min(counts[i]/5*100,100)}%"></div></div>
-    </div>`).join('');
-}
-
+// Sync from admin page
+window.addEventListener('storage', e => { if(e.key==='pm-books'){books=JSON.parse(e.newValue||'[]');renderAll();}});
 renderAll();
 </script>
 </body>
