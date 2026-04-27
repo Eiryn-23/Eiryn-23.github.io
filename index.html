@@ -113,6 +113,7 @@
     .footer-copy { font-size:0.7rem; color:var(--muted); }
 
     @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes spin { to{transform:rotate(360deg)} }
     @keyframes pulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
 
     /* Burger — caché par défaut sur desktop */
@@ -203,34 +204,11 @@
     <h2 class="section-title">Articles récents</h2>
     <div class="section-line"></div>
   </div>
-  <div class="articles-grid">
-    <article class="article-card article-featured">
-      <div class="article-meta">
-        <span class="article-category">À venir</span>
-        <span class="article-date">2026</span>
-      </div>
-      <h3 class="article-title">Le premier article arrive bientôt ✨</h3>
-      <p class="article-excerpt">Cette page se remplit doucement, au fil des pensées, des lectures et des envies. Revenez bientôt 🌸</p>
-      <a href="#" class="article-link">Bientôt disponible</a>
-    </article>
-    <article class="article-card">
-      <div class="article-meta">
-        <span class="article-category">Lectures</span>
-        <span class="article-date">À venir</span>
-      </div>
-      <h3 class="article-title">Ma prochaine chronique lecture 📚</h3>
-      <p class="article-excerpt">Un livre, des émotions, des mots à partager. La suite arrive très bientôt.</p>
-      <a href="#" class="article-link">Bientôt disponible</a>
-    </article>
-    <article class="article-card">
-      <div class="article-meta">
-        <span class="article-category">Créativité</span>
-        <span class="article-date">À venir</span>
-      </div>
-      <h3 class="article-title">Un projet créatif en cours 🎨</h3>
-      <p class="article-excerpt">Des idées plein la tête, pas encore sur le papier. Patience 🌸</p>
-      <a href="#" class="article-link">Bientôt disponible</a>
-    </article>
+  <div class="articles-grid" id="articles-grid">
+    <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted)">
+      <div style="width:30px;height:30px;border:2px solid var(--blush);border-top-color:var(--sakura);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 1rem"></div>
+      Chargement des articles 🌸
+    </div>
   </div>
 </section>
 
@@ -274,6 +252,52 @@
 </footer>
 
 <script>
+  // Supabase config
+  const SUPABASE_URL = 'https://tozpnrgbrcaaqfeanwbr.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_Q5k3MR1qcE5mgyy9A1wZXQ_PyLMKeHW';
+
+  // Load articles from Supabase
+  async function loadArticles() {
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/articles?publie=eq.true&order=created_at.desc&limit=6`, {
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`
+        }
+      });
+      const articles = await res.json();
+      const grid = document.getElementById('articles-grid');
+      if(!articles.length) {
+        grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted)">
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin-bottom:0.5rem">Les articles arrivent bientôt ✨</p>
+          <p style="font-size:0.85rem">Cette page se remplit doucement, au fil des pensées et des envies 🌸</p>
+        </div>`;
+        return;
+      }
+      grid.innerHTML = articles.map((a, i) => {
+        const date = new Date(a.created_at);
+        const months = ['Janv.','Févr.','Mars','Avr.','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'];
+        const dateStr = months[date.getMonth()] + ' ' + date.getFullYear();
+        const excerpt = a.contenu ? a.contenu.replace(/<[^>]*>/g,'').substring(0, 150) + '...' : '';
+        const featured = i === 0 ? 'article-featured' : '';
+        return `<article class="article-card ${featured}">
+          ${a.image_url ? `<div style="width:100%;height:200px;overflow:hidden;border-radius:12px 12px 0 0;margin-bottom:1rem"><img src="${a.image_url}" style="width:100%;height:100%;object-fit:cover" alt="${a.titre}"></div>` : ''}
+          <div class="article-meta">
+            ${a.categorie ? `<span class="article-category">${a.categorie}</span>` : ''}
+            <span class="article-date">${dateStr}</span>
+          </div>
+          <h3 class="article-title">${a.titre}</h3>
+          ${excerpt ? `<p class="article-excerpt">${excerpt}</p>` : ''}
+          <a href="article.html?id=${a.id}" class="article-link">Lire l'article</a>
+        </article>`;
+      }).join('');
+    } catch(e) {
+      document.getElementById('articles-grid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--muted)">Impossible de charger les articles 🌸</div>';
+    }
+  }
+
+  loadArticles();
+
   function toggleMenu(){
     const m = document.getElementById('nav-mobile');
     m.classList.toggle('open');
