@@ -162,7 +162,7 @@
   <a href="#" class="nav-logo">Pensine Moderne</a>
   <ul class="nav-links">
     <li><a href="bibliotheque.html">Ma bibliothèque</a></li>
-    <li><a href="#articles">Blog</a></li>
+    <li><a href="blog.html">Blog</a></li>
     <li><a href="#a-propos">À propos</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -175,7 +175,7 @@
 <div class="nav-mobile" id="nav-mobile">
   <button class="nav-mobile-close" onclick="toggleMenu()">✕</button>
   <a href="bibliotheque.html" onclick="toggleMenu()">📚 Ma bibliothèque</a>
-  <a href="#articles" onclick="toggleMenu()">✦ Blog</a>
+  <a href="blog.html" onclick="toggleMenu()">✦ Blog</a>
   <a href="#a-propos" onclick="toggleMenu()">🌸 À propos</a>
   <a href="#contact" onclick="toggleMenu()">✉ Contact</a>
 </div>
@@ -188,10 +188,7 @@
     🌸 Ici j'organise mes pensées, mes lectures, mes mots<br/>
     ⚖️ Indécise de nature
   </p>
-  <div class="hero-tags">
-    <span class="tag" onclick="scrollToFilter('Mes lectures')" style="cursor:pointer">📚 Mes lectures</span>
-    <span class="tag" onclick="scrollToFilter('Créativité')" style="cursor:pointer">🎨 Créativité</span>
-  </div>
+
   <div class="scroll-hint">
     <div class="scroll-line"></div>
     <span>Défiler</span>
@@ -209,6 +206,9 @@
       <div style="width:30px;height:30px;border:2px solid var(--blush);border-top-color:var(--sakura);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 1rem"></div>
       Chargement des articles 🌸
     </div>
+  </div>
+  <div style="text-align:center;margin-top:2.5rem">
+    <a href="blog.html" style="font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--sakura);text-decoration:none;border:1px solid var(--border2);padding:0.8rem 2rem;border-radius:100px;transition:all 0.3s;display:inline-block" onmouseover="this.style.background='var(--blush)'" onmouseout="this.style.background='transparent'">Voir tous les articles →</a>
   </div>
 </section>
 
@@ -244,7 +244,7 @@
 <footer>
   <span class="footer-name">✿ Eiryn Hanami</span>
   <ul class="footer-links">
-    <li><a href="#articles">Blog</a></li>
+    <li><a href="blog.html">Blog</a></li>
     <li><a href="#a-propos">À propos</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
