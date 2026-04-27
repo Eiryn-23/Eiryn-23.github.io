@@ -189,8 +189,8 @@
     ⚖️ Indécise de nature
   </p>
   <div class="hero-tags">
-    <span class="tag">📚 Mes lectures</span>
-    <span class="tag">🎨 Créativité</span>
+    <span class="tag" onclick="scrollToFilter('Mes lectures')" style="cursor:pointer">📚 Mes lectures</span>
+    <span class="tag" onclick="scrollToFilter('Créativité')" style="cursor:pointer">🎨 Créativité</span>
   </div>
   <div class="scroll-hint">
     <div class="scroll-line"></div>
@@ -282,6 +282,14 @@
   }
 
   loadArticles();
+
+  function scrollToFilter(cat) {
+    activeCategory = cat;
+    document.getElementById('articles').scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+      if(window._allArticles) renderArticles(window._allArticles);
+    }, 600);
+  }
 
   let activeCategory = null;
 
