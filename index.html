@@ -274,29 +274,68 @@
         </div>`;
         return;
       }
-      grid.innerHTML = articles.map((a, i) => {
-        const date = new Date(a.created_at);
-        const months = ['Janv.','Févr.','Mars','Avr.','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'];
-        const dateStr = months[date.getMonth()] + ' ' + date.getFullYear();
-        const excerpt = a.contenu ? a.contenu.replace(/<[^>]*>/g,'').substring(0, 150) + '...' : '';
-        const featured = i === 0 ? 'article-featured' : '';
-        return `<article class="article-card ${featured}">
-          ${a.image_url ? `<div style="width:100%;height:200px;overflow:hidden;border-radius:12px 12px 0 0;margin-bottom:1rem"><img src="${a.image_url}" style="width:100%;height:100%;object-fit:cover" alt="${a.titre}"></div>` : ''}
-          <div class="article-meta">
-            ${a.categorie ? `<span class="article-category">${a.categorie}</span>` : ''}
-            <span class="article-date">${dateStr}</span>
-          </div>
-          <h3 class="article-title">${a.titre}</h3>
-          ${excerpt ? `<p class="article-excerpt">${excerpt}</p>` : ''}
-          <a href="article.html?id=${a.id}" class="article-link">Lire l'article</a>
-        </article>`;
-      }).join('');
+      window._allArticles = articles;
+      renderArticles(articles);
     } catch(e) {
       document.getElementById('articles-grid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--muted)">Impossible de charger les articles 🌸</div>';
     }
   }
 
   loadArticles();
+
+  let activeCategory = null;
+
+  function filterByCategory(cat) {
+    if(activeCategory === cat) {
+      activeCategory = null;
+    } else {
+      activeCategory = cat;
+    }
+    renderArticles(window._allArticles || []);
+  }
+
+  function renderArticles(articles) {
+    const grid = document.getElementById('articles-grid');
+    const filtered = activeCategory ? articles.filter(a => a.categorie === activeCategory) : articles;
+
+    // Update filter bar
+    const cats = [...new Set(articles.map(a=>a.categorie).filter(Boolean))];
+    let filterBar = document.getElementById('filter-bar');
+    if(!filterBar) {
+      filterBar = document.createElement('div');
+      filterBar.id = 'filter-bar';
+      filterBar.style.cssText = 'display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:2rem;';
+      grid.parentNode.insertBefore(filterBar, grid);
+    }
+    filterBar.innerHTML = cats.map(c => `
+      <button onclick="filterByCategory('${c}')" style="font-size:0.7rem;letter-spacing:0.08em;padding:0.4rem 1rem;border-radius:100px;background:${activeCategory===c?'var(--sakura)':'#fff'};border:1px solid ${activeCategory===c?'var(--sakura)':'var(--border2)'};color:${activeCategory===c?'#fff':'var(--muted)'};cursor:pointer;transition:all 0.3s;font-family:'DM Sans',sans-serif;">${c}</button>
+    `).join('') + (activeCategory ? `<button onclick="filterByCategory(null)" style="font-size:0.7rem;padding:0.4rem 1rem;border-radius:100px;background:none;border:1px solid var(--border2);color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;">✕ Tout voir</button>` : '');
+
+    if(!filtered.length) {
+      grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted)">
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin-bottom:0.5rem">Aucun article dans cette catégorie 🌸</p>
+      </div>`;
+      return;
+    }
+
+    const months = ['Janv.','Févr.','Mars','Avr.','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'];
+    grid.innerHTML = filtered.map((a, i) => {
+      const date = new Date(a.created_at);
+      const dateStr = months[date.getMonth()] + ' ' + date.getFullYear();
+      const excerpt = a.contenu ? a.contenu.replace(/<[^>]*>/g,'').substring(0, 150) + '...' : '';
+      const featured = i === 0 && !activeCategory ? 'article-featured' : '';
+      return `<article class="article-card ${featured}">
+        ${a.image_url ? `<div style="width:100%;height:200px;overflow:hidden;border-radius:12px 12px 0 0;margin-bottom:1rem"><img src="${a.image_url}" style="width:100%;height:100%;object-fit:cover" alt="${a.titre}"></div>` : ''}
+        <div class="article-meta">
+          ${a.categorie ? `<span class="article-category" onclick="filterByCategory('${a.categorie}')" style="cursor:pointer">${a.categorie}</span>` : ''}
+          <span class="article-date">${dateStr}</span>
+        </div>
+        <h3 class="article-title">${a.titre}</h3>
+        ${excerpt ? `<p class="article-excerpt">${excerpt}</p>` : ''}
+        <a href="article.html?id=${a.id}" class="article-link">Lire l'article</a>
+      </article>`;
+    }).join('');
+  }
 
   function toggleMenu(){
     const m = document.getElementById('nav-mobile');
