@@ -116,17 +116,39 @@
     @keyframes pulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
 
     @media(max-width:768px){
-      nav{padding:1.2rem 1.5rem}
-      .nav-links{gap:1.2rem}
-      .articles-grid{grid-template-columns:1fr}
-      .article-featured{grid-column:1}
-      .about-grid{grid-template-columns:1fr}
-      .about-portrait{display:none}
-      .newsletter-block{padding:2.5rem 1.5rem}
-      .newsletter-form{flex-direction:column;border-radius:16px}
-      .newsletter-form button{margin:0;border-radius:0 0 12px 12px}
-      footer{flex-direction:column;gap:1rem;text-align:center;padding:1.8rem 1.5rem}
+      nav{padding:1rem 1.2rem;}
+      .nav-links{display:none;}
+      .nav-logo{font-size:1.1rem;}
+      .burger{display:flex;}
+      .hero{padding:4.5rem 1.2rem 2.5rem;}
+      .hero-subtitle{font-size:0.88rem;line-height:2;}
+      .hero-tags{gap:0.5rem;}
+      .tag{font-size:0.65rem;padding:0.35rem 0.85rem;}
+      section{padding:3rem 1.2rem;}
+      .section-title{font-size:1.8rem;}
+      .articles-grid{grid-template-columns:1fr;gap:1rem;}
+      .article-featured{grid-column:1;}
+      .article-card{padding:1.5rem;}
+      .article-featured .article-title{font-size:1.5rem;}
+      .article-card:not(.article-featured) .article-title{font-size:1.2rem;}
+      .about-grid{grid-template-columns:1fr;gap:1.5rem;}
+      .about-portrait{display:none;}
+      .about-content h3{font-size:1.5rem;}
+      .newsletter-block{padding:2rem 1.2rem;border-radius:16px;}
+      .newsletter-block h2{font-size:1.6rem;}
+      .newsletter-form{flex-direction:column;border-radius:14px;}
+      .newsletter-form input{border-radius:14px 14px 0 0;padding:0.9rem 1.2rem;}
+      .newsletter-form button{margin:0;border-radius:0 0 14px 14px;padding:0.9rem;}
+      footer{flex-direction:column;gap:1rem;text-align:center;padding:1.8rem 1.2rem;}
+      .footer-links{gap:1.2rem;flex-wrap:wrap;justify-content:center;}
+      .nav-mobile{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(253,248,245,0.98);backdrop-filter:blur(20px);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;}
+      .nav-mobile.open{display:flex;}
+      .nav-mobile a{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--text);text-decoration:none;letter-spacing:0.05em;transition:color 0.3s;}
+      .nav-mobile a:hover{color:var(--sakura);}
+      .nav-mobile-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;font-size:1.5rem;color:var(--muted);cursor:pointer;}
     }
+    .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:0.3rem;background:none;border:none;}
+    .burger span{display:block;width:22px;height:2px;background:var(--sakura);border-radius:2px;transition:all 0.3s;}
   </style>
 </head>
 <body>
@@ -141,7 +163,19 @@
     <li><a href="#a-propos">À propos</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="burger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Menu mobile -->
+<div class="nav-mobile" id="nav-mobile">
+  <button class="nav-mobile-close" onclick="toggleMenu()">✕</button>
+  <a href="bibliotheque.html" onclick="toggleMenu()">📚 Ma bibliothèque</a>
+  <a href="#articles" onclick="toggleMenu()">✦ Blog</a>
+  <a href="#a-propos" onclick="toggleMenu()">🌸 À propos</a>
+  <a href="#contact" onclick="toggleMenu()">✉ Contact</a>
+</div>
 
 <div class="hero">
   <p class="hero-eyebrow">🌸 Bienvenue</p>
@@ -238,6 +272,12 @@
 </footer>
 
 <script>
+  function toggleMenu(){
+    const m = document.getElementById('nav-mobile');
+    m.classList.toggle('open');
+    document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+  }
+
   const c = document.getElementById('petals');
   const cols = ['#f7c5d0','#f2a8bc','#fce8ed','#e8849e','#fdf0f3','#f9d0da'];
   for (let i = 0; i < 20; i++) {
