@@ -102,7 +102,7 @@ const cols=['#f7c5d0','#f2a8bc','#fce8ed','#e8849e','#fdf0f3'];
 for(let i=0;i<20;i++){const d=document.createElement('div');d.className='petal';const sz=10+Math.random()*16,col=cols[Math.floor(Math.random()*cols.length)];d.innerHTML=`<svg width="${sz}" height="${sz}" viewBox="0 0 40 40"><path d="M20 2 C26 8,36 10,34 20 C32 30,22 36,20 38 C18 36,8 30,6 20 C4 10,14 8,20 2Z" fill="${col}" opacity="0.75"/></svg>`;d.style.left=(Math.random()*102)+'vw';d.style.animation=`fall ${9+Math.random()*10}s linear ${Math.random()*16}s infinite`;pc.appendChild(d);}
 
 const SUPABASE_URL = 'https://tozpnrgbrcaaqfeanwbr.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_Q5k3MR1qcE5mgyy9A1wZXQ_PyLMKeHW';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRvenBucmdicmNhYXFmZWFud2JyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczMTA3NDksImV4cCI6MjA5Mjg4Njc0OX0.ir5bV5xuMjD11NvnPGY3zLEbsvlbn-s--tWdJEpmkM8';
 
 async function loadArticle() {
   const params = new URLSearchParams(window.location.search);

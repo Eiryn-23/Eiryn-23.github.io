@@ -44,27 +44,32 @@
     .tab-panel { display:none; }
     .tab-panel.active { display:block; }
 
-    .books-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:1.5rem; }
-    .book-card { background:#fff; border:1px solid var(--border); border-radius:16px; overflow:hidden; box-shadow:var(--shadow); transition:all 0.35s ease; }
-    .book-card:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(212,96,122,0.14); border-color:var(--border2); }
-    .book-cover { width:100%; aspect-ratio:2/3; background:linear-gradient(160deg,#fce8ed,#f7dde5); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
-    .book-cover img { width:100%; height:100%; object-fit:cover; }
-    .book-cover-placeholder { font-size:3rem; }
-    .book-badge { position:absolute; top:0.7rem; left:0.7rem; font-size:0.58rem; letter-spacing:0.1em; text-transform:uppercase; color:#fff; padding:0.2rem 0.6rem; border-radius:100px; }
-    .badge-lu{background:var(--sakura)} .badge-encours{background:var(--petal3)} .badge-pal{background:var(--petal2);color:var(--text)} .badge-wishlist{background:#c4a8d4} .badge-coeur{background:#e8849e}
-    .format-badge { position:absolute; bottom:0.5rem; right:0.5rem; font-size:0.55rem; background:rgba(255,255,255,0.92); color:var(--muted); padding:0.15rem 0.45rem; border-radius:100px; }
-    .book-info { padding:1rem; }
-    .book-title { font-family:'Cormorant Garamond',serif; font-size:1rem; font-weight:400; color:var(--text); line-height:1.3; margin-bottom:0.2rem; }
-    .book-author { font-size:0.73rem; color:var(--muted); margin-bottom:0.6rem; }
-    .book-genres { display:flex; gap:0.4rem; flex-wrap:wrap; margin-bottom:0.6rem; }
+    .book-info { flex:1; }
+    .book-title { font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:400; color:var(--text); line-height:1.3; margin-bottom:0.2rem; }
+    .book-author { font-size:0.75rem; color:var(--muted); margin-bottom:0.5rem; }
+    .book-genres { display:flex; gap:0.4rem; flex-wrap:wrap; margin-bottom:0.5rem; }
     .book-genre { font-size:0.58rem; letter-spacing:0.08em; text-transform:uppercase; background:var(--blush); color:var(--sakura); padding:0.15rem 0.5rem; border-radius:100px; }
-    .book-stars { color:var(--sakura); font-size:0.82rem; margin-bottom:0.4rem; }
-    .book-avis { font-size:0.73rem; color:var(--muted); line-height:1.5; font-style:italic; margin-bottom:0.4rem; }
+    .book-format { font-size:0.65rem; color:var(--muted); margin-bottom:0.4rem; }
+    .book-stars { color:var(--sakura); font-size:0.9rem; margin-bottom:0.4rem; }
+    .book-avis { font-size:0.78rem; color:var(--muted); line-height:1.6; font-style:italic; margin-bottom:0.4rem; }
     .book-date { font-size:0.65rem; color:var(--petal3); }
-    .progress-mini-outer { background:var(--blush); border-radius:100px; height:5px; margin:0.4rem 0 0.2rem; overflow:hidden; }
+    .progress-mini-outer { background:var(--blush); border-radius:100px; height:5px; margin:0.5rem 0 0.2rem; overflow:hidden; }
     .progress-mini-fill { height:100%; background:linear-gradient(90deg,var(--petal2),var(--sakura)); border-radius:100px; }
 
     .challenge-box { background:#fff; border:1px solid var(--border); border-radius:20px; padding:2.5rem; margin-bottom:2rem; box-shadow:var(--shadow); }
+    .books-grid { display:flex; flex-direction:column; gap:1rem; }
+    .book-card { background:#fff; border:1px solid var(--border); border-radius:16px; overflow:hidden; box-shadow:var(--shadow); transition:all 0.35s ease; }
+    .book-card:hover { box-shadow:0 8px 32px rgba(212,96,122,0.14); border-color:var(--border2); }
+    .book-bandeau { padding:0.4rem 1rem; font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; font-weight:500; }
+    .bandeau-lu { background:var(--sakura); color:#fff; }
+    .bandeau-encours { background:var(--petal3); color:#fff; }
+    .bandeau-pal { background:var(--petal2); color:var(--text); }
+    .bandeau-wishlist { background:#c4a8d4; color:#fff; }
+    .bandeau-coeur { background:#e8849e; color:#fff; }
+    .book-inner { display:grid; grid-template-columns:110px 1fr; gap:1.2rem; padding:1.2rem; align-items:start; }
+    .book-cover { width:110px; min-width:110px; aspect-ratio:2/3; background:linear-gradient(160deg,#fce8ed,#f7dde5); border-radius:10px; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+    .book-cover img { width:100%; height:100%; object-fit:cover; border-radius:10px; }
+    .book-cover-placeholder { font-size:2.5rem; }
     .challenge-box h2 { font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:300; color:var(--text); margin-bottom:0.4rem; }
     .challenge-box p { font-size:0.85rem; color:var(--muted); margin-bottom:1.5rem; }
     .challenge-total { display:flex; align-items:baseline; gap:0.5rem; margin-bottom:1rem; }
@@ -105,7 +110,8 @@
       .burger{display:flex;}
       .page-header{padding:5rem 1.2rem 1.5rem;}
       .months-grid{grid-template-columns:repeat(3,1fr)}
-      .books-grid{grid-template-columns:repeat(2,1fr)}
+      .book-inner{grid-template-columns:80px 1fr;gap:0.8rem;}
+      .book-cover{width:80px;min-width:80px;}
       .main{padding:2rem 1rem 4rem;}
       footer{flex-direction:column;gap:1rem;text-align:center;padding:1.8rem 1.2rem}
       .footer-links{flex-wrap:wrap;justify-content:center;}
@@ -196,7 +202,7 @@ function toggleMenu(){
 }
 
 const SUPABASE_URL = 'https://tozpnrgbrcaaqfeanwbr.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_Q5k3MR1qcE5mgyy9A1wZXQ_PyLMKeHW';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRvenBucmdicmNhYXFmZWFud2JyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczMTA3NDksImV4cCI6MjA5Mjg4Njc0OX0.ir5bV5xuMjD11NvnPGY3zLEbsvlbn-s--tWdJEpmkM8';
 let books = [];
 
 async function loadBooks() {
@@ -217,8 +223,29 @@ const badgeLabels={lu:'Lu',encours:'En cours',pal:'PAL',wishlist:'Wishlist',coeu
 const emptyMsgs={encours:'Aucune lecture en cours.',lu:'Aucun livre lu pour le moment.',pal:'La pile à lire est vide.',wishlist:'La wishlist est vide.',coeur:'Les coups de cœur arrivent bientôt...'};
 
 function renderCard(b){
-  const coverHtml=b.cover?`<img src="${b.cover}" alt="${b.titre}" onerror="this.parentElement.innerHTML='<span class=book-cover-placeholder>${icons[b.section]||'📚'}</span>'">`:`<span class="book-cover-placeholder">${icons[b.section]||'📚'}</span>`;
-  return`<div class="book-card"><div class="book-cover">${coverHtml}<span class="book-badge badge-${b.section}">${badgeLabels[b.section]}</span>${b.format?`<span class="format-badge">${b.format}</span>`:''}</div><div class="book-info"><p class="book-title">${b.titre}</p>${b.auteur?`<p class="book-author">${b.auteur}</p>`:''}<div class="book-genres">${b.genre?`<span class="book-genre">${b.genre}</span>`:''}${b.sgenre?`<span class="book-genre">${b.sgenre}</span>`:''}</div>${b.note?`<p class="book-stars">${stars(b.note)}</p>`:''}${b.avis?`<p class="book-avis">${b.avis}</p>`:''}${b.date?`<p class="book-date">${formatDate(b.date)}</p>`:''}${b.section==='encours'&&b.prog?`<div class="progress-mini-outer"><div class="progress-mini-fill" style="width:${b.prog}%"></div></div><p style="font-size:0.68rem;color:var(--sakura)">${b.prog}%</p>`:''}</div></div>`;
+  const coverHtml=b.cover?`<img src="${b.cover}" alt="${b.titre}" onerror="this.style.display='none'">`:`<span class="book-cover-placeholder">${icons[b.section]||'📚'}</span>`;
+  const bandeauLabels={lu:'✅ Lu',encours:'📖 En cours',pal:'🗂️ PAL',wishlist:'💫 Wishlist',coeur:'🩷 Coup de cœur'};
+  return`<div class="book-card">
+    <div class="book-bandeau bandeau-${b.section}">${bandeauLabels[b.section]||''}</div>
+    <div class="book-inner">
+      <div class="book-cover">${coverHtml}</div>
+      <div class="book-info">
+        <p class="book-title">${b.titre}</p>
+        ${b.auteur?`<p class="book-author">${b.auteur}</p>`:''}
+        <div class="book-genres">
+          ${b.genre?`<span class="book-genre">${b.genre}</span>`:''}
+          ${b.sgenre?`<span class="book-genre">${b.sgenre}</span>`:''}
+        </div>
+        ${b.format?`<p class="book-format">${b.format}</p>`:''}
+        ${b.note?`<p class="book-stars">${stars(b.note)}</p>`:''}
+        ${b.avis?`<p class="book-avis">${b.avis}</p>`:''}
+        ${b.date?`<p class="book-date">${formatDate(b.date)}</p>`:''}
+        ${b.section==='encours'&&b.prog?`
+          <div class="progress-mini-outer"><div class="progress-mini-fill" style="width:${b.prog}%"></div></div>
+          <p style="font-size:0.68rem;color:var(--sakura)">${b.prog}%</p>`:''}
+      </div>
+    </div>
+  </div>`;
 }
 function emptyState(msg){return`<div class="empty-state"><div class="empty-state-icon">🌸</div><p>${msg}</p></div>`;}
 function renderAll(){['encours','lu','pal','wishlist','coeur'].forEach(s=>{const f=books.filter(b=>b.section===s);document.getElementById('grid-'+s).innerHTML=f.length?f.map(renderCard).join(''):emptyState(emptyMsgs[s]);});renderChallenge();}
